@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #9B40FD !important;
+  color: white !important;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+html, #app {
+  min-height: 100vh;
+  background-color: #9B40FD !important;
+  color: white !important;
+}
