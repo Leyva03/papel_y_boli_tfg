@@ -2,10 +2,32 @@
 import BasePage from '../components/base/BasePage.vue'
 import BaseButton from '../components/base/BaseButton.vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
-function empezar() {
-  router.push('/configuracion')
+
+async function empezar() {
+  try {
+    const nuevaPartida = {
+      estado: 'configuracion',
+      tipo_rondas: 'default',
+      turno_actual: 0,
+      cronometro_restante: 60,
+      fecha_creacion: new Date().toISOString()
+    }
+
+    const response = await axios.post('http://localhost:3000/api/partidas', nuevaPartida)
+    const partidaId = response.data.id
+
+    //Guardar el ID de la partida en localStorage
+    localStorage.setItem('partidaId', partidaId)
+
+    //Redirigir a configuración
+    router.push('/configuracion')
+  } catch (error) {
+    console.error('Error al crear la partida', error)
+    alert('Error al iniciar la partida. Intenta de nuevo.')
+  }
 }
 </script>
 

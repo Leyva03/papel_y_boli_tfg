@@ -6,6 +6,7 @@ import PreJuegoView from '../views/PreJuegoView.vue'
 import PartidaView from '../views/PartidaView.vue'
 import CambioTurnoView from '../views/CambioTurnoView.vue'
 import ResultadosView from '../views/ResultadosView.vue'
+import CambioRondaView from '../views/CambioRondaView.vue'
 
 
 const router = createRouter({
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: '/partida', name: 'partida', component: PartidaView },
     { path: '/cambioturno', name: 'cambioturno', component: CambioTurnoView },
     { path: '/resultados', name: 'resultados', component: ResultadosView },
+    { path: '/cambioronda', name: 'cambioronda', component: CambioRondaView },
   ],
 })
 
