@@ -6,6 +6,8 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
+module.exports = app;
+
 app.use(cors());
 app.use(express.json());
 
@@ -254,6 +256,7 @@ app.get('/api/orden-turnos/:partida_id', (req, res) => {
   });
 });
 
+//Actualizar el estado de una palabra
 app.put('/api/palabras/:id', (req, res) => {
   const { estado } = req.body
   const { id } = req.params
@@ -283,35 +286,6 @@ app.get('/api/jugador/:id', (req, res) => {
 
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Conexión entre frontend y backend' });
-});
-
-app.put('/api/equipos/:id', (req, res) => {
-  const { puntos } = req.body;
-  const { id } = req.params;
-  const query = 'UPDATE equipos SET puntos = puntos + ? WHERE id = ?';
-
-  db.run(query, [puntos, id], function(err) {
-    if (err) {
-      console.error(err.message);
-      return res.status(500).json({ error: 'Error al actualizar los puntos del equipo' });
-    }
-    res.status(200).json({ message: 'Puntos actualizados correctamente' });
-  });
-});
-
-//Actualizar el estado de una palabra
-app.put('/api/palabras/:id', (req, res) => {
-  const { estado } = req.body;
-  const { id } = req.params;
-  const query = 'UPDATE palabras SET estado = ? WHERE id = ?';
-
-  db.run(query, [estado, id], function (err) {
-    if (err) {
-      console.error(err.message);
-      return res.status(500).json({ error: 'Error al actualizar palabra' });
-    }
-    res.status(200).json({ message: 'Palabra actualizada' });
-  });
 });
 
 //Actualizar puntos del equipo
@@ -378,7 +352,8 @@ app.get('/api/partidas/cronometro_restante/:id', (req, res) => {
     }
   });
 });
-
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+if (require.main === module){
+  app.listen(PORT, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  });
+}

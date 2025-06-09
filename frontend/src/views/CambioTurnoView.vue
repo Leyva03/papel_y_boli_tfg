@@ -27,9 +27,15 @@
       </div>
   
       <!-- Botón para que el siguiente jugador pueda jugar -->
-      <button @click="goToNextTurn" class="btn btn-primary">
-        Continuar al siguiente jugador
-      </button>
+      <div class="boton-guardar-container-abajo-siempre">
+        <img
+          src="@/assets/guardartodo.png"
+          alt="Continuar al siguiente jugador"
+          @click="goToNextTurn"
+          class="cursor-pointer transition-transform duration-300 hover:scale-110"
+          style="max-width: 300px; width: 100%; height: auto;"
+        />
+      </div>
     </div>
   </BasePage>
 </template>
@@ -64,38 +70,66 @@
 
   //Función para cargar los puntos de los equipos
   const cargarPuntosEquipos = async () => {
-    const res = await axios.get(`http://localhost:3000/api/equipos/${partidaId}`)
-    equipos.value = res.data
+    try{
+      const res = await axios.get(`http://localhost:3000/api/equipos/${partidaId}`)
+      equipos.value = res.data
+    } catch(error){
+      console.error("Error en cargarPuntosEquipos:", error);
+      equipos.value = [];
+    }
   }
 
   //Función para cargar las palabras restantes y acertadas desde la base de datos
   const cargarPalabras = async () => {
-    await actualizarEstadoPalabras()
-    const res = await axios.get(`http://localhost:3000/api/palabras/${partidaId}`)
-    const palabras = res.data
-    remainingWords.value = palabras.filter(p => p.estado === 'pendiente').map(p => p.texto) //Filtrar las palabras restantes (pendientes)
-    totalWords.value = palabras.length //Obtener el total de palabras
+    try{
+      await actualizarEstadoPalabras()
+      const res = await axios.get(`http://localhost:3000/api/palabras/${partidaId}`)
+      const palabras = res.data
+      remainingWords.value = palabras.filter(p => p.estado === 'pendiente').map(p => p.texto) //Filtrar las palabras restantes (pendientes)
+      totalWords.value = palabras.length //Obtener el total de palabras
+    } catch(error){
+      console.error("Error en cargarPalabras:", error);
+      remainingWords.value = [];
+      totalWords.value = 0;
+    }
+
   }
 
   //Función para actualizar las palabras pasadas a pendiente
   const actualizarEstadoPalabras = async () => {
-    const palabrasPasadas = await axios.get(`http://localhost:3000/api/palabras/${partidaId}`)
-    const palabras = palabrasPasadas.data
-    const palabrasAPasar = palabras.filter(p => p.estado === 'pasada') //Filtrar las palabras pasadas y actualizar su estado
-    for (const palabra of palabrasAPasar) {
-      await axios.put(`http://localhost:3000/api/palabras/${palabra.id}`, { estado: 'pendiente' })
+    try{
+      const palabrasPasadas = await axios.get(`http://localhost:3000/api/palabras/${partidaId}`)
+      const palabras = palabrasPasadas.data
+      const palabrasAPasar = palabras.filter(p => p.estado === 'pasada') //Filtrar las palabras pasadas y actualizar su estado
+      for (const palabra of palabrasAPasar) {
+        await axios.put(`http://localhost:3000/api/palabras/${palabra.id}`, { estado: 'pendiente' })
+      }
+    } catch(error){
+      console.error("Error en actualizarEstadoPalabras:", error);
     }
+
   }
 
   //Función para cargar el orden de los turnos desde la base de datos
   const cargarOrdenTurnos = async () => {
-    const res = await axios.get(`http://localhost:3000/api/orden-turnos/${partidaId}`)
-    console.log('Datos de orden de turnos:', res.data)
-    players.value = res.data
-
-    const lastPlayedPlayerId = localStorage.getItem('lastPlayedPlayerId') //Obtener el jugador que acaba de jugar
-    const currentTurnIndex = players.value.findIndex(player => player.jugador_id === Number(lastPlayedPlayerId))
-    currentPlayerIndex.value = currentTurnIndex
+    try{
+      const res = await axios.get(`http://localhost:3000/api/orden-turnos/${partidaId}`)
+      console.log('Datos de orden de turnos:', res.data)
+      players.value = (res && res.data && Array.isArray(res.data)) ? res.data : [];
+      console.log('players.value en cargarOrdenTurnos:', JSON.stringify(players.value));
+      
+      const lastPlayedPlayerId = localStorage.getItem('lastPlayedPlayerId');
+      if (players.value.length > 0 && lastPlayedPlayerId) {
+        const currentTurnIndex = players.value.findIndex(player => player.jugador_id === Number(lastPlayedPlayerId));
+        currentPlayerIndex.value = currentTurnIndex !== -1 ? currentTurnIndex : 0;
+      } else {
+        currentPlayerIndex.value = 0;
+      }
+    }catch(error){
+      console.error("Error en cargarOrdenTurnos:", error);
+      players.value = [];
+      currentPlayerIndex.value = 0; 
+    }
   }
 
 
@@ -103,19 +137,26 @@
   const goToNextTurn = () => {
     const nextPlayerId = players.value[(currentPlayerIndex.value + 1) % players.value.length].jugador_id
 
-    // Actualizar el índice del jugador al siguiente en el orden
     currentPlayerIndex.value = (currentPlayerIndex.value + 1) % players.value.length
     console.log('Guardando ID del siguiente jugador en localStorage:', nextPlayerId)
-    localStorage.setItem('lastPlayedPlayerId', nextPlayerId) //Guardar el ID del siguiente jugador
+    localStorage.setItem('lastPlayedPlayerId', nextPlayerId.toString()) //Guardar el ID del siguiente jugador
 
     //Redirigir a partida para que el siguiente jugador pueda jugar
     router.push('/partida')
   }
 
   onMounted(async () => {
-    await cargarOrdenTurnos() //Cargar el orden de turnos
-    await cargarPuntosEquipos() //Cargar los puntos de los equipos
-    await cargarPalabras() //Cargar palabras
+    try {
+      await cargarOrdenTurnos() //Cargar el orden de turnos
+      await cargarPuntosEquipos() //Cargar los puntos de los equipos
+      await cargarPalabras() //Cargar palabras
+    } catch(error){
+      console.error("Error general durante onMounted en CambioTurnoView:", error);
+      equipos.value = [];
+      remainingWords.value = [];
+      totalWords.value = 0;
+    }
+
   })
 </script>
 

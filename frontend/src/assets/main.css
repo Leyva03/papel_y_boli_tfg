@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,9 +8,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #9B40FD !important;
-  color: white !important;
-  font-family: 'Segoe UI', sans-serif;
+  background-color: #9B40FD;
+  color: white;
+  font-family: 'Inria Sans', 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +19,478 @@ body {
 
 html, #app {
   min-height: 100vh;
-  background-color: #9B40FD !important;
-  color: white !important;
+  background-color: #9B40FD;
+  color: white;
+}
+
+.text-stroke-white {
+  -webkit-text-stroke: 2px white;
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.3),
+    -1px 1px 2px rgba(0, 0, 0, 0.3),
+    1px -1px 2px rgba(0, 0, 0, 0.3),
+    -1px -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-inicio{
+  font-family: 'Kaisei HarunoUmi', 'Segoe UI', sans-serif;
+}
+
+/*Configuración Equipos*/
+.titulo-sombra-suave {
+  -webkit-text-stroke: 1px white;
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 1);
+}
+
+.placeholder-InriaSans::placeholder {
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.input-equipo {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: 500;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-equipo::placeholder {
+  color: #444;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.input-equipo:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.input-jugador {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #6A1B9A;
+  color: white;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: 500;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-jugador::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.input-jugador:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.input-jugador-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.eliminar-jugador {
+  font-size: 1.2rem; 
+  color: white;
+  background: transparent;
+  border: none; 
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-bottom: 0.5rem;
+  justify-content: center;
+}
+
+.input-jugador-container input {
+  flex-grow: 1;
+}
+
+/*Estilo para el botón de añadir otro integrante*/
+.boton-integrante {
+  display: inline-block;
+  padding: 0.8rem 1.5rem; 
+  font-size: 1rem;
+  border-radius: 8px; 
+  background-color: #6A1B9A; 
+  color: white;
+  border: 1px solid white;
+  font-family: 'Inria Sans', sans-serif; 
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); 
+  transition: all 0.3s ease; 
+}
+
+/*Efecto al pasar el ratón (hover)*/
+.boton-integrante:hover {
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+  background-color: #9B40FD;
+}
+
+/* Efecto al presionar (active) */
+.boton-integrante:active {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+  background-color: #7E1CC6;
+}
+
+/*Estilo para el botón de añadir otro equipo*/
+.boton-equipo {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #6A1B9A;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.boton-equipo:hover {
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+  background-color: #9B40FD;
+}
+
+.boton-equipo:active {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+  background-color: #7E1CC6;
+}
+
+/*Estilo para el botón de eliminar el último equipo*/
+.boton-eliminar-equipo {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #D32F2F;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.boton-eliminar-equipo:hover {
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+  background-color: #C2185B;
+}
+
+.boton-eliminar-equipo:active {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(4px);
+  background-color: #9C1C1C;
+}
+
+/*Estilo para el texto*/
+.texto-general {
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/*Estilo para el contenedor*/
+.input-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/*Estilo para el input*/
+.input-numero-palabras {
+  width: 3rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #6A1B9A;
+  color: white;
+  border: 1px solid white;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: bold;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-numero-palabras:hover {
+  background-color: #9B40FD;
+}
+
+.input-numero-palabras:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/*Estilo para el contenedor principal*/
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+/*Estilo para el contenedor del botón de "Guardar y continuar"*/
+.boton-guardar-container {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-guardar-container img {
+  width: 150px !important;
+  height: auto !important;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-guardar-container img:hover {
+  transform: scale(1.05);
+}
+
+.boton-guardar-container-abajo-siempre {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.boton-guardar-container-abajo-siempre img {
+  width: 150px !important;
+  height: auto !important;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.boton-guardar-container-abajo-siempre img:hover {
+  transform: scale(1.05);
+}
+
+.ronda-titulo {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  -webkit-text-stroke: 2px black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 3rem;
+  margin-top: 5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/*Estilo para el texto "El primer jugador es..."*/
+.texto-jugador {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.nombre-jugador {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top:-0.6rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.margen-nombre-jugador{
+  margin-top: 5rem;
+  margin-bottom: -2.5rem;
+}
+
+.page-partida {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+/*Estilo para los botones de acción en la vista partida*/
+.btn-partida {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+/*Estilo para el botón "Acierto"*/
+.btn-acierto {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn-acierto:hover {
+  background-color: #45a049;
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+}
+
+.btn-acierto:active {
+  background-color: #388e3c;
+  transform: translateY(4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/*Estilo para el botón "Pasar"*/
+.btn-pasar {
+  background-color: #f44336;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn-pasar:hover {
+  background-color: #e53935;
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+}
+
+.btn-pasar:active {
+  background-color: #d32f2f;
+  transform: translateY(4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.buttons {
+  position: fixed;
+  bottom: 3rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.buttons button {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+/*Estilo común para los botones de acción del cronómetro*/
+.btn-temporal {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin-right: 0.5rem;
+  text-align: center;
+  background-color: #6A1B9A;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn-temporal:hover {
+  background-color: #7E1CC6;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-temporal:active {
+  background-color: #9B40FD;
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/*Estilo para el contenedor de los botones de tiempo*/
+.timer-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/*Estilo para el contenedor del botón "Editar Tiempo"*/
+.edit-timer-button {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+/*Estilo para el input de tiempo*/
+.input-tiempo {
+  width: 60%;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+  font-family: 'Inria Sans', sans-serif;
+  font-weight: 500;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-tiempo::placeholder {
+  color: #444;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.input-tiempo:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/*Estilo para el contenedor de input y botón guardar*/
+.input-button-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
 }

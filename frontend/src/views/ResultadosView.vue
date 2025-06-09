@@ -19,8 +19,14 @@
       </div>
       
       <!-- Botón para reinicar el juego -->
-      <div class="button-container">
-        <button @click="restartGame" class="btn btn-primary">Volver a jugar</button>
+      <div class="boton-guardar-container-abajo-siempre">
+        <img
+          src="@/assets/guardartodo.png"
+          alt="Volver a jugar"
+          @click="restartGame"
+          class="cursor-pointer transition-transform duration-300 hover:scale-110"
+          style="max-width: 300px; width: 100%; height: auto;"
+        />
       </div>
     </div>
   </BasePage>

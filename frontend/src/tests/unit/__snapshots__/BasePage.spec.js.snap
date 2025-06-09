@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BasePage.vue debería coincidir con el snapshot con título y contenido de slot 1`] = `
+"<div class="p-6 max-w-2xl mx-auto">
+  <h1 class="titulo-inicio text-4xl titulo-sombra-suave mb-4 text-center text-white">Título para Snapshot</h1>
+  <div>Contenido del slot para snapshot</div>
+</div>"
+`;
+
+exports[`BasePage.vue debería coincidir con el snapshot solo con el título (sin slot) 1`] = `
+"<div class="p-6 max-w-2xl mx-auto">
+  <h1 class="titulo-inicio text-4xl titulo-sombra-suave mb-4 text-center text-white">Título Solo para Snapshot</h1>
+</div>"
+`;
