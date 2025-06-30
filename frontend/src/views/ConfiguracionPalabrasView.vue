@@ -7,7 +7,7 @@
       <!-- Generar campos de palabras según el número de palabras por persona -->
       <div v-for="i in numeroPalabras" :key="i" class="flex flex-col">
         <label :for="'word' + i" class="texto-general">Palabra {{ i }}:</label>
-        <input v-model="words[i - 1]" :id="'word' + i" type="text" class="input-equipo" />
+        <input v-model="words[i - 1]" :id="'word' + i" type="text" class="input-equipo" maxlength="15"/>
       </div>
 
       <p>Cuando hayas terminado pulsa el botón y pásale </p>
@@ -49,6 +49,8 @@ onMounted(async () => {
     const resNumeroPalabras = await axios.get(`http://localhost:3000/api/partidas/numero-palabras/${partidaId}`)
     numeroPalabras.value = resNumeroPalabras.data.numero_palabras || 3 //Usar 3 como valor por defecto si no se encuentra el valor
 
+    words.value = Array(numeroPalabras.value).fill('')
+
     const resJugadores = await axios.get(`http://localhost:3000/api/orden-turnos/${partidaId}`)
     jugadores.value = resJugadores.data
 
@@ -63,6 +65,12 @@ onMounted(async () => {
 
 //Botón para pasar al siguiente jugador
 const nextPlayer = async () => {
+  const algunaPalabraVacia = words.value.some(word => word.trim() === '');
+
+  if (algunaPalabraVacia) {
+    alert('Debes rellenar todas las palabras para poder continuar.');
+    return; //Detiene la ejecución si alguna palabra falta
+  }
   const jugador = jugadores.value[currentIndex.value]
 
   //Guardar las palabras introducidas en la base de datos

@@ -271,6 +271,7 @@ html, #app {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #9B40FD;  
 }
 
 .boton-guardar-container img {
@@ -286,13 +287,16 @@ html, #app {
 
 .boton-guardar-container-abajo-siempre {
   position: fixed;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
+  background-color: #9B40FD;  
+  padding: 1.5rem 0;
 }
 
 .boton-guardar-container-abajo-siempre img {
@@ -493,4 +497,38 @@ html, #app {
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: center;
+}
+
+.siguiente-tematica-label {
+  margin-top: 2.5rem;
+  margin-bottom: -2rem;
+}
+
+.winner {
+  margin-top: 7rem;
+}
+
+.team-scores {
+  margin-top: 7rem;
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.equipo-ganador-lista {
+  color: #FFD700;
+  font-weight: bold;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.remaining-words {
+  margin-bottom: 5rem;
+}
+
+.team-scores ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
 }

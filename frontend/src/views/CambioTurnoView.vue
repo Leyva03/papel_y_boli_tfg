@@ -15,15 +15,13 @@
       <!-- Mostrar las palabras restantes -->
       <div class="remaining-words">
        <p><strong>Palabras restantes:</strong> {{ remainingWords.length }} / {{ totalWords }}</p>
-        <ul>
-          <li v-for="word in remainingWords" :key="word">{{ word }}</li>
-        </ul>
       </div>
         
       <!-- Mostrar al jugador que le toca jugar -->
-      <div class="next-player">
-        <p>El siguiente jugador es...</p>
-        <p><strong>{{ nextPlayer.nombre}}</strong></p> 
+      <div>
+        <p class="texto-jugador">El siguiente jugador es...</p>
+        <p class="nombre-jugador"><strong>{{ nextPlayer.nombre}}</strong></p> 
+        <p>Al pulsar continuará la ronda, sólo <strong>{{ nextPlayer.nombre }}</strong></p><p>puede ver la pantalla</p>
       </div>
   
       <!-- Botón para que el siguiente jugador pueda jugar -->

@@ -4,15 +4,16 @@
 
       <!-- Mostrar el ganador de la partida -->
       <div v-if="winner" class="winner">
-        <h3 class="text-xl">¡El equipo ganador es:</h3>
-        <h2 class="font-bold"><strong>{{ winner }}</strong> con {{ winnerPoints }} puntos</h2>
+        <h3 class="texto-jugador">El equipo ganador es:</h3>
+        <strong class="ronda-titulo">{{ winner }}</strong>
+        <h2> con {{ winnerPoints }} puntos</h2>
       </div>
       
       <!-- Mostrar los resultados de la partida -->
       <div class="team-scores">
         <h3 class="text-xl">Recuento final:</h3>
         <ul>
-          <li v-for="(score, team) in scores" :key="team">
+          <li v-for="(score, team) in scores" :key="team" :class="{ 'equipo-ganador-lista': team === winner }">
             {{ team }}: {{ score }} puntos
           </li>
         </ul>

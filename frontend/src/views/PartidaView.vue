@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+  import { ref, computed, onMounted, onUnmounted } from 'vue'
   import { useRouter } from 'vue-router'
   import axios from 'axios'
   import BasePage from '../components/base/BasePage.vue'
@@ -298,6 +298,12 @@
       if (interval) clearInterval(interval);
     }
   })
+  onUnmounted(() => {
+  console.log('PartidaView unmounted, clearing timer interval.');
+  if (interval) {
+    clearInterval(interval);
+  }
+});
 </script>
 
 <style scoped>

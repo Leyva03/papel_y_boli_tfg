@@ -8,6 +8,7 @@
             v-model="equipo.nombre"
             :placeholder="`Introduce un nombre`"
             class="input-equipo"
+            maxlength="15"
           />
 
           <p class="text-white mb-4">Integrantes: (5 máx.)</p>
@@ -17,6 +18,7 @@
               v-model="equipo.jugadores[jIndex]"
               class="input-jugador"
               placeholder="Introduce un jugador"
+              maxlength="15"
             />
             <button @click="eliminarJugador(index, jIndex)" class="eliminar-jugador">✖</button>
           </div>
@@ -42,7 +44,7 @@
 
         <div>
           <label class="texto-general">Número de palabras por persona:</label>
-          <input v-model="numeroPalabras" type="number" min="1" class="input-numero-palabras" />
+          <input v-model="numeroPalabras" type="number" min="1" max="10" class="input-numero-palabras" />
         </div>
 
         <p class="texto-general">Las temáticas son las siguientes:</p>

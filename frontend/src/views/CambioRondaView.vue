@@ -12,14 +12,16 @@
       </div>
 
       <!-- Mostrar la siguiente temática -->
-      <div class="next-tematica">
-        <p><strong>Siguiente Temática:</strong> {{ siguienteTematica }}</p>
+      <div class="next-player">
+        <p class="siguiente-tematica-label"><strong>Siguiente Temática:</strong></p>
+        <p class="ronda-titulo">{{ siguienteTematica }}</p>
       </div>
 
       <!-- Mostrar el siguiente jugador -->
-      <div class="next-player">
-        <p>El siguiente jugador es...</p>
-        <p><strong>{{ nextPlayer.nombre }}</strong></p> 
+      <div>
+        <p class="texto-jugador">El siguiente jugador es...</p>
+        <p class="nombre-jugador"><strong>{{ nextPlayer.nombre }}</strong></p> 
+        <p>Al pulsar empezará la ronda, sólo <strong>{{ nextPlayer.nombre }}</strong></p><p>puede ver la pantalla</p>
       </div>
 
       <!-- Botón para cambiar a la siguiente temática y que el siguiente jugador pueda jugar -->
@@ -147,8 +149,8 @@
   //Función para continuar con el siguiente turno
   const goToNextTurn = async () => {
     try{
-      const nextPlayerId = players.value[(currentPlayerIndex.value + 1) % players.value.length].jugador_id
-      currentPlayerIndex.value = (currentPlayerIndex.value + 1) % players.value.length
+      const nextIndex = (currentPlayerIndex.value + 1) % players.value.length;
+      const nextPlayerId = players.value[nextIndex].jugador_id;
       localStorage.setItem('lastPlayedPlayerId', nextPlayerId.toString()) //Guardar el ID del siguiente jugador
       await axios.put(`http://localhost:3000/api/partidas/siguiente-tematica/${partidaId}`, {
         estado: siguienteTematica.value, //Guardar la siguiente temática
