@@ -1,12 +1,13 @@
 <template>
-  <div class="page-container">
-    <BasePage title="¡YA ESTÁ TODO CONFIGURADO!">
+  <BasePage title="¡YA ESTÁ TODO CONFIGURADO!">
+    <div class="page-with-fixed-button">
       <h2 class="ronda-titulo">RONDA 1: {{ rondaNombre }}</h2>
 
       <!-- Mostrar al jugador que le toca jugar -->
       <p class="texto-jugador">El primer jugador es...</p>
       <h3 class="nombre-jugador"><strong>{{ jugador?.nombre }}</strong></h3>
       <p>Al pulsar empezará la ronda, sólo <strong>{{ jugador?.nombre }}</strong></p><p>puede ver la pantalla</p>
+    </div>
 
       <!-- Botón para empezar la partida -->
       <div class="boton-guardar-container-abajo-siempre">
@@ -19,7 +20,6 @@
         />
       </div>
     </BasePage>
-  </div>
 </template>
 
 <script setup>

@@ -1,6 +1,6 @@
 <template>
   <BasePage title="Cambio de Ronda">
-    <div class="space-y-6">
+    <div class="page-with-fixed-button">
 
       <!-- Mostrar los resultados de la ronda -->
       <h3><strong>Resultados de la ronda</strong></h3>
@@ -23,6 +23,7 @@
         <p class="nombre-jugador"><strong>{{ nextPlayer.nombre }}</strong></p> 
         <p>Al pulsar empezará la ronda, sólo <strong>{{ nextPlayer.nombre }}</strong></p><p>puede ver la pantalla</p>
       </div>
+    </div>
 
       <!-- Botón para cambiar a la siguiente temática y que el siguiente jugador pueda jugar -->
       <div class="boton-guardar-container-abajo-siempre">
@@ -34,7 +35,6 @@
           style="max-width: 300px; width: 100%; height: auto;"
         />
       </div>
-    </div>
   </BasePage>
 </template>
 

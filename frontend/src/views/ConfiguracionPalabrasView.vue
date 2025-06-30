@@ -1,6 +1,6 @@
 <template>
   <BasePage title="TURNO DE:">
-    <div v-if="currentPlayer" class="space-y-4">
+    <div v-if="currentPlayer" class="page-with-fixed-button">
       <h3 class="nombre-jugador"><strong>{{ currentPlayer.nombre }}</strong></h3>
       <p>¡Que nadie más vea la pantalla!</p>
 
@@ -12,8 +12,8 @@
 
       <p>Cuando hayas terminado pulsa el botón y pásale </p>
       <p>el dispositivo al jugador que marque la pantalla</p>
-
-      <div class="boton-guardar-container">
+    </div>
+      <div class="boton-guardar-container-abajo-siempre">
         <img
           src="@/assets/guardartodo.png"
           alt="Empezar Partida"
@@ -22,7 +22,6 @@
           style="max-width: 300px; width: 100%; height: auto;"
         />
       </div>
-    </div>
   </BasePage>
 </template>
   

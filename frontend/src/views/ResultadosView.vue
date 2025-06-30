@@ -1,6 +1,6 @@
 <template>
   <BasePage title="¡FIN DEL JUEGO!">
-    <div class="space-y-6">
+    <div class="page-with-fixed-button">
 
       <!-- Mostrar el ganador de la partida -->
       <div v-if="winner" class="winner">
@@ -18,7 +18,7 @@
           </li>
         </ul>
       </div>
-      
+    </div>
       <!-- Botón para reinicar el juego -->
       <div class="boton-guardar-container-abajo-siempre">
         <img
@@ -29,7 +29,6 @@
           style="max-width: 300px; width: 100%; height: auto;"
         />
       </div>
-    </div>
   </BasePage>
 </template>
 

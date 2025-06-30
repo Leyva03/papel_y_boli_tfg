@@ -532,3 +532,7 @@ html, #app {
   padding: 0;
   text-align: left;
 }
+
+.page-with-fixed-button {
+  padding-bottom: 200px;
+}

@@ -32,7 +32,7 @@
           </button>
         </div>
 
-        <button @click="añadirEquipo" class="boton-equipo">+ Añadir equipo</button>
+        <button v-if="equipos.length < 6" @click="añadirEquipo" class="boton-equipo">+ Añadir equipo</button>
 
         <button 
           v-if="equipos.length >= 3" 
@@ -108,6 +108,10 @@ function eliminarJugador(equipoIndex, jugadorIndex) {
 
 //Botón para guardar la configuración
 async function guardarTodo() {
+  if (numeroPalabras.value < 1 || numeroPalabras.value > 10) {
+    alert('El número de palabras debe ser entre 1 y 10.')
+    return
+  }
   //Validación
   for (const [i, eq] of equipos.value.entries()) {
     if (!eq.nombre.trim()) {
