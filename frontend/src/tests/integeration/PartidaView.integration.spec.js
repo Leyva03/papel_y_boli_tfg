@@ -59,12 +59,10 @@ describe('PartidaView.vue - API Integration', () => {
     expect(wrapper.vm.words.length).toBe(0);
     expect(wrapper.vm.word).toBe('');
 
-    //Timer
     expect(wrapper.vm.timer).toBeLessThanOrEqual(60);
     expect(wrapper.vm.timer).toBeGreaterThanOrEqual(58);
     expect(wrapper.find('.timer p strong').text()).toBe(String(wrapper.vm.timer));
 
-    //Round Info
     expect(wrapper.vm.rondaNombre).toBe('MÍMICA');
     expect(wrapper.find('p').text()).toContain('RONDA: MÍMICA');
     expect(wrapper.vm.tematicas).toEqual(["DESCRIBE LIBREMENTE", "DESCRIBE CON UNA PALABRA", "MÍMICA"]);

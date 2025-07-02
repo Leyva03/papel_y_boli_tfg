@@ -70,7 +70,6 @@ describe('InicioView.vue - API Integration', () => {
       const lastCallArgs = localStorageMock.setItem.mock.calls[localStorageMock.setItem.mock.calls.length - 1];
       expect(lastCallArgs[0]).toBe('partidaId');
       const partidaIdFromStorage = lastCallArgs[1];
-      console.log('Integration Test: Partida ID created and stored:', partidaIdFromStorage); // For your info
       expect(partidaIdFromStorage).toMatch(/^\d+$/);
     }
   });

@@ -125,7 +125,7 @@ describe('ConfiguracionPalabrasView.vue - API Integration', () => {
     expect(wrapper.vm.words).toEqual(['', '']);
 
     expect(wrapper.vm.currentIndex).toBe(1);
-    expect(wrapper.find('h3.nombre-jugador strong').text()).toBe(mockJugadoresDataFromBackend[1].nombre); // Next player
+    expect(wrapper.find('h3.nombre-jugador strong').text()).toBe(mockJugadoresDataFromBackend[1].nombre);
   });
 
   it('debería redirigir a /prejuego después de que el último jugador introduzca palabras', async () => {
