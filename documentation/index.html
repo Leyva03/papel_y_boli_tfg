@@ -1,0 +1,350 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dosier del TFG - Pau Leyva García</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2em 1em;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #5b21b6 0%, #1e40af 100%);
+      color: white;
+      padding: 3em 2em;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 0.5em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .subtitle {
+      font-size: 1.2em;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+    
+    .content {
+      padding: 2.5em;
+    }
+    
+    .section {
+      margin-bottom: 3em;
+    }
+    
+    h2 {
+      font-size: 1.8em;
+      color: #2d3748;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.5em;
+      border-bottom: 3px solid #e2e8f0;
+      position: relative;
+      font-weight: 600;
+    }
+    
+    h2::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #5b21b6, #1e40af);
+      border-radius: 2px;
+    }
+    
+    .file-grid {
+      display: grid;
+      gap: 1em;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .file-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5em;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .file-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #5b21b6, #1e40af);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .file-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border-color: #cbd5e0;
+    }
+    
+    .file-item:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .file-link {
+      text-decoration: none;
+      color: #2d3748;
+      display: block;
+      font-weight: 500;
+      font-size: 1.1em;
+    }
+    
+    .file-link:hover {
+      color: #5b21b6;
+    }
+    
+    .file-icon {
+      font-size: 1.5em;
+      margin-right: 0.8em;
+      vertical-align: middle;
+    }
+    
+    .external-link {
+      position: relative;
+    }
+    
+    .external-link::after {
+      content: '↗';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2em;
+      color: #5b21b6;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .external-link:hover::after {
+      opacity: 1;
+    }
+    
+    .stats-bar {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      padding: 2em;
+      margin: 2em 0;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2em;
+      text-align: center;
+    }
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #5b21b6;
+      margin-bottom: 0.3em;
+    }
+    
+    .stat-label {
+      font-size: 0.9em;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    
+    .footer {
+      background: #f7fafc;
+      padding: 2em;
+      text-align: center;
+      color: #718096;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+          @media (max-width: 768px) {
+      body {
+        padding: 1em 0.5em;
+      }
+      
+      .header {
+        padding: 2em 1em;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      .content {
+        padding: 1.5em;
+      }
+      
+      .file-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-content">
+        <h1>Dosier - TFG</h1>
+        <p class="subtitle">Digitalización de un juego: "Papel y Boli"<br>
+        <strong>Pau Leyva García</strong> | Universitat Autònoma de Barcelona</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <h2>Informe Inicial</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="01_Informe_Inicial/TFG_informe_inicial_1636526.pdf" class="file-link">
+              <span class="file-icon">📋</span>Informe Inicial
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Informes de Seguimiento</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="02_Informe_Progres_I/TFG_informe_progreso_I_1636526.pdf" class="file-link">
+              <span class="file-icon">📈</span>Informe de Progreso I
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="03_Informe_Progres_II/TFG_informe_progreso_II_1636526.pdf" class="file-link">
+              <span class="file-icon">📊</span>Informe de Progreso II
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Informe Final</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="04_Informe_Final_Proposta/Proposta_Informe_Final_Pau_Leyva_García.pdf" class="file-link">
+              <span class="file-icon">📝</span>Propuesta del Informe Final
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="04_Informe_Final/TFG_informe_final_1636526.pdf" class="file-link">
+              <span class="file-icon">📄</span>Informe Final
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Presentación</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="05_Presentacio/Presentacion_TFG.pptx" class="file-link">
+              <span class="file-icon">🎯</span>Presentación (PPTX)
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="05_Presentacio/Presentacion_TFG.pdf" class="file-link">
+              <span class="file-icon">📑</span>Presentación (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Código</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="https://github.com/Leyva03/papel_y_boli_tfg" target="_blank" class="file-link external-link">
+              <span class="file-icon">🔗</span>Repositorio GitHub
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="06_Codi/README.md" class="file-link">
+              <span class="file-icon">📖</span>README del proyecto
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Diagramas y Prototipo</h2>
+        <div class="file-grid">
+          <div class="file-item">
+            <a href="07_Diagrames/gantt.xlsx" class="file-link">
+              <span class="file-icon">📅</span>Diagrama de Gantt (Excel)
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="07_Diagrames/diagrama_arquitectura_y_despliegue.png" class="file-link">
+              <span class="file-icon">🏗️</span>Diagrama de arquitectura y despliegue del sistema
+            </a>
+          </div>
+          <div class="file-item">
+            <a href="07_Diagrames/prototipo_figma.png" class="file-link">
+              <span class="file-icon">🎨</span>Prototipo de Diseño (Figma)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p><strong>Trabajo Final de Grado</strong> | Grado en Ingeniería Informática<br>
+      Universitat Autònoma de Barcelona | 2025</p>
+    </div>
+  </div>
+</body>
+</html>
